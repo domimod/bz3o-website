@@ -117,15 +117,3 @@ Docelowo:
 
 Przekierowania domen pomocniczych należy skonfigurować u operatora DNS/hostingu przekierowań, nie w samym Astro.
 
-## Do uzupełnienia przed uruchomieniem publicznym
-
-- finalne zdjęcie Hero,
-- zdjęcia Zhang Fengjuna, Renaty i Dominika,
-- zdjęcia treningowe,
-- numer telefonu i WhatsApp,
-- komunikacja miejska,
-- finalna polityka prywatności,
-- GA4 Measurement ID,
-- Search Console,
-- pierwsze artykuły,
-- ewentualne filmy YouTube.
