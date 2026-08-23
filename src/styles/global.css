@@ -1,0 +1,70 @@
+@import './tokens.css';
+@import './reset.css';
+@import './typography.css';
+@import './utilities.css';
+
+html { background: var(--color-ivory); }
+body {
+  min-width: 320px;
+  background: var(--color-ivory);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body.nav-open { overflow: hidden; }
+
+::selection { background: rgba(171, 133, 65, 0.25); }
+
+:focus-visible {
+  outline: 2px solid var(--color-seal);
+  outline-offset: 3px;
+}
+
+a { text-underline-offset: 0.18em; }
+a:hover { color: var(--color-gold-dark); }
+
+.button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.76rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  line-height: 1.1;
+  text-decoration: none;
+  transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+.button:hover { transform: translateY(-1px); }
+.button--primary { background: var(--color-ink); color: var(--color-ivory); }
+.button--primary:hover { background: var(--color-ink-soft); color: var(--color-ivory); }
+.button--secondary { border: 1px solid var(--color-gold); color: var(--color-ink); background: transparent; }
+.button--secondary:hover { border-color: var(--color-gold-dark); background: rgba(171,133,65,0.08); color: var(--color-ink); }
+.button--gold { background: var(--color-gold); color: #161412; }
+.button--gold:hover { background: #bd9854; color: #161412; }
+
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.link-arrow { font-weight: 700; text-decoration-thickness: 1px; }
+
+.skip-link {
+  position: fixed; top: 0.5rem; left: 0.5rem; z-index: 9999;
+  transform: translateY(-150%);
+  padding: 0.65rem 0.9rem; background: var(--color-ink); color: white;
+}
+.skip-link:focus { transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

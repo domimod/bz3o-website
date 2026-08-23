@@ -1,0 +1,15 @@
+---
+import SectionHeader from './SectionHeader.astro';
+---
+<section class="section">
+  <div class="container">
+    <SectionHeader eyebrow="Poza regularnym treningiem" title="Więcej możliwości treningu" />
+    <div class="options">
+      <article class="option card"><span>Warsztaty</span><h3>Weekendowe spotkania tematyczne</h3><p>Okresowo organizujemy weekendowe warsztaty poświęcone wybranym aspektom Baguazhang.</p><div class="status">Informacje o najbliższych warsztatach pojawią się wkrótce.</div></article>
+      <article class="option card"><span>Indywidualnie</span><h3>Trening dopasowany do Twoich potrzeb</h3><p>Istnieje możliwość umówienia treningu indywidualnego dostosowanego do poziomu i potrzeb ćwiczącego.</p><a class="button button--secondary" href="#kontakt">Zapytaj o trening indywidualny</a></article>
+    </div>
+  </div>
+</section>
+<style>
+  .options{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.option{padding:clamp(1.5rem,4vw,2.2rem)}.option>span{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--color-gold-dark);font-weight:800}.option h3{margin:.6rem 0 .7rem}.option p{color:var(--color-text-muted);margin-bottom:1.3rem}.status{padding:.8rem 1rem;background:var(--color-surface-soft);border-left:2px solid var(--color-gold);font-size:.88rem;color:var(--color-text-muted)}@media(max-width:700px){.options{grid-template-columns:1fr}}
+</style>

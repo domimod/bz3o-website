@@ -1,0 +1,46 @@
+---
+import SectionHeader from './SectionHeader.astro';
+const circles = [
+  { n:'01', title:'Okrąg kroków', subtitle:'Ruch wokół przeciwnika', text:'Chodzenie po okręgu rozwija stabilność, koordynację i umiejętność ciągłej zmiany pozycji. W zastosowaniu bojowym pozwala zejść z linii ataku i znaleźć korzystniejszy kierunek działania.', cls:'steps' },
+  { n:'02', title:'Okrąg ciała', subtitle:'Rotacja i spiralna praca tułowia', text:'Obrót bioder, tułowia i barków integruje ruch całego ciała. Siła nie powstaje lokalnie w rękach czy nogach, lecz jest przenoszona przez połączoną strukturę.', cls:'body' },
+  { n:'03', title:'Okrąg rąk', subtitle:'Kolisty ruch ramion i dłoni', text:'Ramiona i dłonie prowadzą ruch po łuku, przekierowując siłę przeciwnika i płynnie łącząc obronę z kontratakiem.', cls:'hands' }
+];
+---
+<section id="trzy-okregi" class="section three-section">
+  <div class="container">
+    <SectionHeader eyebrow="Idea szkoły" title="Dlaczego Trzy Okręgi?" lead="Nazwa szkoły odnosi się do trzech wzajemnie powiązanych poziomów ruchu charakterystycznych dla Bagua Zhang." centered inverse />
+    <div class="circle-grid">
+      {circles.map((item) => (
+        <article class="circle-card">
+          <div class:list={['circle-icon', item.cls]} aria-hidden="true"><i></i><i></i><i></i><b>{item.n}</b></div>
+          <h3>{item.title}</h3>
+          <strong>{item.subtitle}</strong>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+    <div class="three-callout">Koło kroków i koło tułowia pozwalają zejść z linii ataku, koło ramion rozprasza siłę przeciwnika, a zgromadzona w tym ruchu energia może zostać uwolniona w prostoliniowym ataku.</div>
+  </div>
+</section>
+
+<style>
+  .three-section { background:var(--color-ink); color:var(--color-ivory); position:relative; overflow:hidden; }
+  .three-section::before { content:''; position:absolute; width:540px; aspect-ratio:1; border:1px solid rgba(171,133,65,.12); border-radius:50%; left:-220px; top:-180px; box-shadow:0 0 0 85px rgba(171,133,65,.035),0 0 0 170px rgba(172,160,138,.025); }
+  .circle-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; position:relative; }
+  .circle-card { padding:2rem 1.4rem; border:1px solid #494540; border-radius:var(--radius-md); background:#242321; }
+  .circle-card h3 { margin-top:1.15rem; }
+  .circle-card > strong { display:block; margin-top:.4rem; color:#d4b374; font-size:.9rem; }
+  .circle-card p { margin-top:.9rem; color:#d5cec3; font-size:.93rem; }
+  .circle-icon { position:relative; width:104px; aspect-ratio:1; display:grid; place-items:center; }
+  .circle-icon i { position:absolute; border-radius:50%; border:1.5px solid; }
+  .circle-icon i:nth-child(1){ inset:0; border-color:#e8e2d8; }
+  .circle-icon i:nth-child(2){ inset:14px; border-color:var(--color-gold); }
+  .circle-icon i:nth-child(3){ inset:28px; border-color:#787168; }
+  .circle-icon b { font-family:var(--font-heading); font-size:1.35rem; color:var(--color-ivory); }
+  .steps i:nth-child(2){ transform:translateX(-5px); }
+  .body i:nth-child(3){ transform:translate(5px,-2px); }
+  .hands i:nth-child(1){ transform:rotate(7deg); }
+  .three-callout { max-width:900px; margin:3rem auto 0; padding:1.35rem 1.5rem; border-top:1px solid #675d4a; border-bottom:1px solid #675d4a; text-align:center; font-family:var(--font-heading); font-size:clamp(1.25rem,2.6vw,1.65rem); line-height:1.4; color:#eee7dc; }
+  @media(max-width:900px){ .circle-grid{ grid-template-columns:1fr; } .circle-card{ display:grid; grid-template-columns:auto 1fr; column-gap:1.2rem; } .circle-card h3,.circle-card>strong,.circle-card p{ grid-column:2; } .circle-card h3{ align-self:end; } .circle-icon{ grid-row:1/5; } }
+  @media(max-width:560px){ .circle-card{ display:block; } }
+</style>

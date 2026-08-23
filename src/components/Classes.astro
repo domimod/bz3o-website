@@ -1,0 +1,30 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import { siteConfig } from '../config/site';
+---
+<section id="zajecia" class="section section--soft">
+  <div class="container">
+    <SectionHeader eyebrow="Pierwszy trening bezpłatny" title="Zajęcia regularne" lead="Możesz dołączyć w dowolnym momencie. Nie jest wymagane wcześniejsze doświadczenie w sztukach walki." />
+    <div class="class-card">
+      <div class="fact"><span>Kiedy</span><strong>{siteConfig.classes.day}<br/>{siteConfig.classes.time}</strong><small>{siteConfig.classes.startDate} – {siteConfig.classes.endDate}</small></div>
+      <div class="fact"><span>Gdzie</span><strong>{siteConfig.location.name}</strong><small>{siteConfig.location.street}, {siteConfig.location.city}<br/>{siteConfig.location.room}</small><a class="link-arrow" href={siteConfig.location.mapsUrl} target="_blank" rel="noopener">Otwórz w Google Maps →</a></div>
+      <div class="fact highlight"><span>Pierwszy trening</span><strong>Bezpłatny</strong><small>{siteConfig.classes.audience}</small></div>
+      <div class="fact"><span>Cena</span><strong>{siteConfig.classes.price}</strong><small>Przy dołączeniu w trakcie miesiąca opłata jest proporcjonalna. Płatność: gotówka lub BLIK.</small></div>
+    </div>
+    <div class="practical-grid">
+      <div><h3>Dla nowych uczestników</h3><ul><li>luźny strój sportowy, np. dres,</li><li>wygodne obuwie sportowe, najlepiej na niskiej podeszwie,</li><li>woda,</li><li>wystarczy ogólna sprawność fizyczna.</li></ul></div>
+      <div><h3>Dojazd</h3><p>Przy Domu Kultury znajduje się dużo bezpłatnych miejsc parkingowych.</p><p class="pending">Komunikacja miejska: lista tramwajów i autobusów do uzupełnienia.</p></div>
+      <div><h3>Grupa</h3><p>Maksymalna liczebność obecnej grupy: <strong>{siteConfig.classes.maxParticipants} osób</strong>.</p><p>Zajęcia odbywają się w standardowej formule grupowego treningu ruchowego i nie są obecnie przystosowane do potrzeb osób z istotnymi ograniczeniami ruchowymi.</p></div>
+    </div>
+  </div>
+</section>
+<style>
+  .class-card{ display:grid; grid-template-columns:repeat(4,1fr); background:var(--color-ink); color:var(--color-ivory); border-radius:var(--radius-lg); overflow:hidden; }
+  .fact{ padding:clamp(1.4rem,3vw,2rem); border-right:1px solid #45413c; display:grid; align-content:start; gap:.55rem; }
+  .fact:last-child{border-right:0}.fact>span{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:#cdb079;font-weight:800}.fact>strong{font-family:var(--font-heading);font-size:clamp(1.55rem,3vw,2.15rem);line-height:1.08}.fact small{color:#cec8bd;line-height:1.5}.fact a{font-size:.8rem;color:#e1c384}.highlight{background:#292725}
+  .practical-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:1rem; }
+  .practical-grid>div{ padding:1.4rem; background:white; border:1px solid var(--color-border); border-radius:var(--radius-md); }
+  .practical-grid h3{ margin-bottom:.75rem; }.practical-grid p,.practical-grid li{ color:var(--color-text-muted); font-size:.9rem; }.practical-grid ul{padding-left:1.1rem}.practical-grid li+li,.practical-grid p+p{margin-top:.4rem}.pending{font-style:italic}
+  @media(max-width:950px){.class-card{grid-template-columns:repeat(2,1fr)}.fact:nth-child(2){border-right:0}.fact:nth-child(-n+2){border-bottom:1px solid #45413c}}
+  @media(max-width:700px){.class-card,.practical-grid{grid-template-columns:1fr}.fact{border-right:0;border-bottom:1px solid #45413c}.fact:last-child{border-bottom:0}}
+</style>

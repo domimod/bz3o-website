@@ -1,0 +1,12 @@
+{
+  "name": "Bagua Zhang – Szkoła Trzech Okręgów",
+  "short_name": "BZ3O",
+  "description": "Szkoła Bagua Zhang w Krakowie.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9F8F6",
+  "theme_color": "#F9F8F6",
+  "icons": [
+    {"src":"/favicon.svg","sizes":"any","type":"image/svg+xml"}
+  ]
+}

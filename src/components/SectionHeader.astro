@@ -1,0 +1,23 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  centered?: boolean;
+  inverse?: boolean;
+}
+const { eyebrow, title, lead, centered = false, inverse = false } = Astro.props;
+---
+<header class:list={['section-header', { centered, inverse }]}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h2>{title}</h2>
+  {lead && <p class="lead">{lead}</p>}
+</header>
+
+<style>
+  .section-header { display: grid; gap: 1rem; margin-bottom: clamp(2rem, 5vw, 3.5rem); max-width: 780px; }
+  .centered { margin-inline: auto; text-align: center; }
+  .centered .lead { margin-inline: auto; }
+  .inverse .eyebrow { color: #c9a767; }
+  .inverse .lead { color: #d9d3c8; }
+</style>

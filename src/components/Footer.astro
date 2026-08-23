@@ -1,0 +1,17 @@
+---
+import LogoMark from './LogoMark.astro';
+import { siteConfig, navigation } from '../config/site';
+const socials = Object.entries(siteConfig.social).filter(([,url]) => Boolean(url));
+---
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="brand"><LogoMark inverse /><p>{siteConfig.internationalName}</p><strong>{siteConfig.name}</strong></div>
+    <div><h2>Nawigacja</h2><nav>{navigation.slice(0,6).map(item=><a href={`/${item.href}`}>{item.label}</a>)}<a href="/artykuly/">Artykuły</a></nav></div>
+    <div><h2>Kontakt</h2><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>{siteConfig.phone && <a href={`tel:${siteConfig.phone}`}>{siteConfig.phone}</a>}{socials.length>0 && <div class="socials">{socials.map(([name,url])=><a href={url} target="_blank" rel="noopener">{name}</a>)}</div>}</div>
+    <div><h2>Informacje</h2><a href="/polityka-prywatnosci/">Polityka prywatności</a><a href={siteConfig.location.mapsUrl} target="_blank" rel="noopener">Lokalizacja</a></div>
+  </div>
+  <div class="container footer-bottom"><span>© 2026 {siteConfig.name}</span><span>BZ3O</span></div>
+</footer>
+<style>
+  .footer{background:var(--color-ink);color:var(--color-ivory);padding:3rem 0 1.4rem}.footer-grid{display:grid;grid-template-columns:1.6fr .8fr .9fr .9fr;gap:2rem}.brand p{margin-top:1rem;color:#c8c0b5;font-family:var(--font-heading)}.brand>strong{display:block;margin-top:.3rem;font-size:.78rem;color:#938b81}.footer h2{font-family:var(--font-body);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em;color:#c8aa6d;margin-bottom:.8rem}.footer nav,.footer-grid>div:not(.brand){display:grid;align-content:start;gap:.45rem}.footer a{color:#d7d0c5;text-decoration:none;font-size:.85rem}.footer a:hover{color:#e4c47f}.footer-bottom{display:flex;justify-content:space-between;margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid #3d3935;color:#8f887f;font-size:.72rem}@media(max-width:850px){.footer-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.footer-grid{grid-template-columns:1fr}.footer-bottom{display:grid;gap:.4rem}}
+</style>

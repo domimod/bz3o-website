@@ -1,0 +1,25 @@
+---
+import SectionHeader from './SectionHeader.astro';
+const pillars = [
+  ['Tradycyjny Cheng Baguazhang','Nauczamy Bagua Zhang w tradycji stylu Cheng, zachowując charakterystyczne dla niego metody ruchu i treningu.'],
+  ['Mocne podstawy i Shen Fa','Dużą wagę przywiązujemy do Ji Ben Gong, pracy nóg, pozycji oraz Shen Fa – sposobu wykorzystania całego ciała jako jednej połączonej struktury.'],
+  ['Zdrowie i sprawność','Szczególnie podkreślamy elementy treningu, które pomagają rozwijać mobilność, koordynację, równowagę i swobodę ruchu.'],
+  ['Sztuka walki','Bagua nie traktujemy wyłącznie jako ćwiczeń zdrowotnych. Poznawanym ruchom towarzyszy nauka ich praktycznego zastosowania.']
+];
+---
+<section id="szkola" class="section">
+  <div class="container">
+    <SectionHeader eyebrow="Charakter szkoły" title="Dlaczego warto ćwiczyć z nami?" lead="Zdrowie i sprawność są pierwszym celem. Zrozumienie sztuki walki nadaje ruchowi sens i kierunek." />
+    <div class="pillar-grid">
+      {pillars.map(([title,text],i) => <article><span>{String(i+1).padStart(2,'0')}</span><h3>{title}</h3><p>{text}</p></article>)}
+    </div>
+  </div>
+</section>
+<style>
+  .pillar-grid{ display:grid; grid-template-columns:repeat(2,1fr); border-top:1px solid var(--color-border); border-left:1px solid var(--color-border); }
+  article{ padding:clamp(1.5rem,4vw,2.4rem); border-right:1px solid var(--color-border); border-bottom:1px solid var(--color-border); }
+  article>span{ color:var(--color-gold-dark); font-family:var(--font-heading); }
+  h3{ margin:.55rem 0 .7rem; }
+  p{ color:var(--color-text-muted); }
+  @media(max-width:700px){ .pillar-grid{grid-template-columns:1fr} }
+</style>

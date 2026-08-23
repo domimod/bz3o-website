@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import SectionHeader from './SectionHeader.astro';
+const published = (await getCollection('articles', ({ data }) => data.language === 'pl' && data.draft !== true))
+  .sort((a,b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0,3);
+const planned = [
+  ['Historia Bagua Zhang','Krótki przewodnik po początkach Bagua Zhang i najważniejszych liniach przekazu.'],
+  ['Bagua Zhang a Tai Chi – czym się różnią?','Porównanie sposobu poruszania się, pracy ciała i charakteru treningu.'],
+  ['Korzyści z treningu Bagua Zhang','Jak poszczególne elementy treningu przekładają się na mobilność, równowagę i koordynację.']
+];
+---
+<section id="artykuly" class="section section--white">
+  <div class="container">
+    <SectionHeader eyebrow="Wiedza" title="Artykuły o Bagua Zhang" lead="Materiały o treningu, historii, metodach ruchu oraz wewnętrznych stylach chińskich sztuk walki." />
+    <div class="article-grid">
+      {published.length > 0 ? published.map(post => (
+        <article class="article-card card"><div class="article-image"><span>ARTYKUŁ</span></div><div class="article-copy"><p class="eyebrow">{post.data.tags[0] ?? 'Bagua Zhang'}</p><h3>{post.data.title}</h3><p>{post.data.description}</p><a class="link-arrow" href={`/artykuly/${post.id}/`}>Czytaj →</a></div></article>
+      )) : planned.map(([title,description]) => (
+        <article class="article-card card"><div class="article-image"><span>W PRZYGOTOWANIU</span></div><div class="article-copy"><p class="eyebrow">Planowany artykuł</p><h3>{title}</h3><p>{description}</p><span class="coming">Treść zostanie dodana w kolejnej iteracji.</span></div></article>
+      ))}
+    </div>
+    <p class="all"><a class="link-arrow" href="/artykuly/">Wszystkie artykuły →</a></p>
+  </div>
+</section>
+<style>
+  .article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.article-card{overflow:hidden}.article-image{aspect-ratio:16/9;background:linear-gradient(135deg,#ede7dc,#f7f5f0);display:grid;place-items:center;color:var(--color-gold-dark);font-size:.68rem;font-weight:800;letter-spacing:.14em}.article-copy{padding:1.3rem}.article-copy h3{margin:.4rem 0 .6rem}.article-copy>p:not(.eyebrow){color:var(--color-text-muted);font-size:.9rem;margin-bottom:1rem}.coming{font-size:.78rem;color:#938b82}.all{margin-top:1.7rem}@media(max-width:850px){.article-grid{grid-template-columns:1fr}.article-card{display:grid;grid-template-columns:210px 1fr}.article-image{height:100%;aspect-ratio:auto}}@media(max-width:550px){.article-card{display:block}.article-image{aspect-ratio:16/9}}
+</style>

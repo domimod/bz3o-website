@@ -1,0 +1,54 @@
+---
+import MediaPlaceholder from './MediaPlaceholder.astro';
+import { siteConfig } from '../config/site';
+---
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="hero-brand"><img src="/logo/logo-symbol.webp" width="88" height="82" alt="Symbol aktualnego logo BZ3O" loading="eager" /><p class="eyebrow">Bagua Zhang · Kraków</p></div>
+      <h1 id="hero-title">Bagua Zhang<br/><span>Szkoła Trzech Okręgów</span></h1>
+      <p class="international">{siteConfig.internationalName}</p>
+      <div class="motto">
+        <strong>Koordynacja. Koncentracja. Kondycja.</strong>
+        <span>Odkryj sztukę ruchu po okręgu.</span>
+      </div>
+      <p class="lead">Rozwijaj mobilność, równowagę i świadomość ciała poprzez świadomy ruch po okręgu. Poznaj tradycyjne Cheng Baguazhang – praktykę, która łączy pracę nad zdrowiem i sprawnością z praktycznym wymiarem sztuki walki.</p>
+      <div class="hero-actions">
+        <a class="button button--primary" href="#kontakt">Umów się na pierwszy trening</a>
+        <a class="button button--secondary" href="#bagua">Poznaj Bagua Zhang</a>
+      </div>
+      <p class="class-note"><strong>Kraków</strong> · środy 19:30–21:00 · <span>pierwszy trening bezpłatny</span></p>
+    </div>
+    <div class="hero-media">
+      <MediaPlaceholder label="Zdjęcie główne" detail="Grupa ćwicząca chodzenie po okręgu / Tang Ni Bu" aspect="4 / 5" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { padding: clamp(3rem, 7vw, 6.5rem) 0 clamp(4rem, 8vw, 7rem); overflow:hidden; }
+  .hero-grid { display:grid; grid-template-columns:minmax(0,1.12fr) minmax(340px,.88fr); gap:clamp(2.5rem,6vw,6rem); align-items:center; }
+  .hero-copy { display:grid; gap:1.35rem; }
+  .hero-brand { display:flex; align-items:center; gap:.9rem; }
+  .hero-brand img { width:76px; height:auto; mix-blend-mode:multiply; border-radius:8px; }
+  h1 span { color:var(--color-gold-dark); }
+  .international { font-family:var(--font-heading); font-size:1.05rem; color:var(--color-text-muted); letter-spacing:.02em; }
+  .motto { display:grid; gap:.1rem; padding-left:1rem; border-left:2px solid var(--color-gold); }
+  .motto strong { font-size:clamp(1.05rem,2vw,1.3rem); }
+  .motto span { color:var(--color-text-muted); }
+  .hero-actions { display:flex; flex-wrap:wrap; gap:.75rem; }
+  .class-note { font-size:.88rem; color:var(--color-text-muted); }
+  .class-note span { color:var(--color-seal); font-weight:700; }
+  .hero-media { position:relative; }
+  .hero-media::before { content:''; position:absolute; z-index:-1; width:80%; aspect-ratio:1; border:1px solid rgba(171,133,65,.35); border-radius:50%; right:-18%; top:-8%; }
+  @media (max-width:900px) {
+    .hero-grid { grid-template-columns:1fr; }
+    .hero-copy { max-width:760px; }
+    .hero-media { max-width:650px; }
+  }
+  @media (max-width:600px) {
+    .hero { padding-top:2.5rem; }
+    .hero-actions { display:grid; }
+    .hero-actions .button { width:100%; }
+  }
+</style>

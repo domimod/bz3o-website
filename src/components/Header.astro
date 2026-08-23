@@ -1,0 +1,95 @@
+---
+import LogoMark from './LogoMark.astro';
+import { navigation } from '../config/site';
+---
+<header class="site-header" data-header>
+  <div class="header-inner container">
+    <LogoMark />
+
+    <nav class="desktop-nav" aria-label="Główna nawigacja">
+      {navigation.map((item) => <a href={item.href} data-nav-link>{item.label}</a>)}
+    </nav>
+
+    <a class="button button--primary header-cta" href="#kontakt">Pierwszy trening</a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Otwórz menu" data-menu-toggle>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+    <nav class="mobile-nav container" aria-label="Nawigacja mobilna">
+      {navigation.map((item) => <a href={item.href} data-mobile-link>{item.label}</a>)}
+      <a class="button button--primary" href="#kontakt" data-mobile-link>Pierwszy trening</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  const mobileLinks = document.querySelectorAll('[data-mobile-link]');
+
+  const closeMenu = () => {
+    if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) return;
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Otwórz menu');
+    menu.hidden = true;
+    document.body.classList.remove('nav-open');
+  };
+
+  toggle?.addEventListener('click', () => {
+    if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) return;
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    toggle.setAttribute('aria-label', open ? 'Otwórz menu' : 'Zamknij menu');
+    menu.hidden = open;
+    document.body.classList.toggle('nav-open', !open);
+  });
+
+  mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
+
+  window.addEventListener('scroll', () => {
+    header?.classList.toggle('scrolled', window.scrollY > 14);
+  }, { passive: true });
+
+  const sections = [...document.querySelectorAll('main section[id]')];
+  const navLinks = [...document.querySelectorAll('[data-nav-link]')];
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      navLinks.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === `#${visible.target.id}`));
+    }, { rootMargin: '-28% 0px -62% 0px', threshold: [0, .25, .5] });
+    sections.forEach(section => observer.observe(section));
+  }
+</script>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 1000;
+    height: var(--header-height);
+    background: rgba(249,248,246,.94);
+    backdrop-filter: blur(12px);
+    transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+    border-bottom: 1px solid transparent;
+  }
+  .site-header.scrolled { border-color: rgba(216,209,197,.8); box-shadow: 0 5px 24px rgba(30,29,29,.055); }
+  .header-inner { height:100%; display:flex; align-items:center; gap:1rem; }
+  .desktop-nav { margin-left:auto; display:flex; align-items:center; gap:1.15rem; }
+  .desktop-nav a { position:relative; text-decoration:none; font-size:.82rem; font-weight:650; color:#494440; white-space:nowrap; }
+  .desktop-nav a::after { content:''; position:absolute; left:0; right:100%; bottom:-8px; height:1.5px; background:var(--color-gold); transition:right var(--transition-fast); }
+  .desktop-nav a:hover::after, .desktop-nav a.active::after { right:0; }
+  .header-cta { min-height:40px; padding:.62rem .9rem; font-size:.8rem; margin-left:.4rem; }
+  .menu-toggle { display:none; margin-left:auto; width:44px; height:44px; background:transparent; padding:10px; cursor:pointer; }
+  .menu-toggle span { display:block; height:2px; background:var(--color-ink); margin:5px 0; }
+  .mobile-menu { position:fixed; inset:var(--header-height) 0 0; background:var(--color-ivory); border-top:1px solid var(--color-border); }
+  .mobile-nav { display:grid; align-content:start; gap:.2rem; padding-top:1.4rem; }
+  .mobile-nav > a:not(.button) { padding:.75rem .25rem; font-family:var(--font-heading); font-size:1.55rem; text-decoration:none; border-bottom:1px solid rgba(216,209,197,.7); }
+  .mobile-nav .button { margin-top:1rem; }
+  @media (max-width:1080px) {
+    .desktop-nav, .header-cta { display:none; }
+    .menu-toggle { display:block; }
+  }
+</style>

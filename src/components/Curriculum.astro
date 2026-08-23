@@ -1,0 +1,37 @@
+---
+import SectionHeader from './SectionHeader.astro';
+const levels = [
+  { level:'Poziom 1', name:'Fundamenty', accent:true, items:['Ji Ben Gong','Podstawowe pozycje','Tan Tui','Tang Ni Bu','Kou Bu – krok zamykający','Bai Bu – krok otwierający','8 Mother Palms'] },
+  { level:'Poziom 2', name:'Zmiany i zastosowania', items:['Single Palm Change','Double Palm Change','Ćwiczenia w parach','Zastosowania technik'] },
+  { level:'Poziom 3', name:'Pełny system', items:['Forma ręczna – 24 pozycje / 64 dłonie','Układy podwójne','Zi Wu Yang Yue – „kacze noże”','Szabla','Miecz','Kij','Włócznia'] }
+];
+---
+<section id="program" class="section section--soft">
+  <div class="container">
+    <SectionHeader eyebrow="Fundamenty → zmiany → pełny system" title="Program nauki" lead="Program został podzielony na trzy etapy. Każdy kolejny poziom rozwija umiejętności zbudowane wcześniej." />
+    <div class="levels desktop-levels">
+      {levels.map(level => <article class:list={['level-card',{accent:level.accent}]}><p class="eyebrow">{level.level}</p><h3>{level.name}</h3><ul>{level.items.map(item=><li>{item}</li>)}</ul></article>)}
+    </div>
+    <div class="mobile-levels">
+      {levels.map((level,i) => <details open={i===0}><summary><span>{level.level}</span><strong>{level.name}</strong></summary><ul>{level.items.map(item=><li>{item}</li>)}</ul></details>)}
+    </div>
+    <p class="curriculum-note"><strong>Kou Bu i Bai Bu</strong> stanowią podstawowy mechanizm zmiany kierunku w Baguazhang i umożliwiają płynne przechodzenie pomiędzy kolejnymi ustawieniami ciała.</p>
+  </div>
+</section>
+<style>
+  .levels{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+  .level-card{ padding:1.7rem; border:1px solid var(--color-border); border-radius:var(--radius-md); background:var(--color-surface); }
+  .level-card.accent{ border-top:4px solid var(--color-gold); }
+  .level-card h3{ margin:.45rem 0 1rem; }
+  ul{ list-style:none; display:grid; gap:.62rem; }
+  li{ position:relative; padding-left:1.05rem; color:#4b4642; }
+  li::before{ content:'•'; position:absolute; left:0; color:var(--color-gold-dark); }
+  .curriculum-note{ margin-top:1.7rem; max-width:800px; color:var(--color-text-muted); }
+  .mobile-levels{ display:none; }
+  details{ border:1px solid var(--color-border); border-radius:var(--radius-md); background:white; padding:0 1.1rem; }
+  details+details{ margin-top:.7rem; }
+  summary{ cursor:pointer; padding:1rem 0; display:flex; justify-content:space-between; gap:1rem; list-style:none; }
+  summary span{ color:var(--color-gold-dark); font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+  details ul{ padding:0 0 1.1rem; }
+  @media(max-width:800px){ .desktop-levels{display:none}.mobile-levels{display:block} }
+</style>

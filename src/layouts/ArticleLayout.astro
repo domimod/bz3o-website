@@ -1,0 +1,24 @@
+---
+import BaseLayout from './BaseLayout.astro';
+interface Props { title:string; description:string; date:Date; author:string; tags:string[]; image?:string; }
+const { title, description, date, author, tags, image } = Astro.props;
+const siteUrl = Astro.site ?? new URL('https://baguatrzechokregow.pl');
+const url = new URL(Astro.url.pathname, siteUrl);
+const articleSchema = {
+  '@context':'https://schema.org', '@type':'Article', headline:title, description, datePublished:date.toISOString(), author:{'@type':'Person','name':author}, mainEntityOfPage:url.toString(), keywords:tags.join(', ')
+};
+---
+<BaseLayout title={`${title} | BZ3O`} description={description} image={image ?? '/og/bz3o-og.png'} type="article" schema={articleSchema}>
+  <article class="article-shell section">
+    <header class="article-header narrow">
+      <p class="eyebrow">{tags.join(' · ') || 'Bagua Zhang'}</p>
+      <h1>{title}</h1>
+      <p class="lead">{description}</p>
+      <p class="meta">{new Intl.DateTimeFormat('pl-PL',{dateStyle:'long'}).format(date)} · {author}</p>
+    </header>
+    <div class="article-body narrow"><slot /></div>
+  </article>
+</BaseLayout>
+<style>
+  .article-header{display:grid;gap:1rem}.article-header h1{font-size:clamp(2.7rem,7vw,4.5rem)}.meta{font-size:.82rem;color:var(--color-text-muted)}.article-body{margin-top:3rem}.article-body :global(h2){font-size:2rem;margin:2.6rem 0 1rem}.article-body :global(h3){margin:2rem 0 .7rem}.article-body :global(p){margin:1rem 0;color:#3f3b38}.article-body :global(ul),.article-body :global(ol){padding-left:1.35rem;margin:1rem 0}.article-body :global(blockquote){margin:2rem 0;padding:1rem 1.3rem;border-left:3px solid var(--color-gold);background:var(--color-surface-soft)}
+</style>

@@ -1,0 +1,30 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import MediaPlaceholder from './MediaPlaceholder.astro';
+---
+<section id="bagua" class="section section--white">
+  <div class="container about-grid">
+    <div>
+      <SectionHeader eyebrow="Wewnętrzna sztuka walki" title="Czym jest Bagua Zhang?" lead="Bagua Zhang (Baguazhang, 八卦掌) jest jedną z trzech klasycznych chińskich wewnętrznych sztuk walki – obok Tai Chi Chuan i Xing Yi Quan." />
+      <div class="copy stack">
+        <p>Jej najbardziej charakterystycznym elementem jest chodzenie po okręgu, połączone z rotacją i spiralnym ruchem całego ciała oraz płynnymi zmianami kierunku.</p>
+        <p>Bagua rozwija umiejętność ciągłego poruszania się, zmiany pozycji i wykorzystywania ruchu całego ciała. Regularna praktyka pomaga rozwijać równowagę, mobilność, koordynację i koncentrację.</p>
+        <p>Jednocześnie Bagua pozostaje pełnoprawną sztuką walki, której ruchy posiadają konkretne zastosowania praktyczne.</p>
+      </div>
+      <blockquote>
+        <strong>Baguazhang opiera się na nieustannym ruchu, obrocie i przemianie.</strong>
+        <span>Ciało pozostaje giętkie i zaokrąglone, a kolejne zmiany płynnie przechodzą jedna w drugą.</span>
+      </blockquote>
+    </div>
+    <MediaPlaceholder label="Chodzenie po okręgu" detail="Kadr pokazujący ustawienie całego ciała" aspect="4 / 5" />
+  </div>
+</section>
+
+<style>
+  .about-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr); gap:clamp(2.5rem,6vw,6rem); align-items:center; }
+  .copy { color:#3f3b38; }
+  blockquote { margin-top:2.3rem; padding:1.5rem 1.6rem; border-left:3px solid var(--color-gold); background:var(--color-surface-soft); display:grid; gap:.45rem; }
+  blockquote strong { font-family:var(--font-heading); font-size:clamp(1.35rem,2.5vw,1.75rem); }
+  blockquote span { color:var(--color-text-muted); }
+  @media(max-width:850px){ .about-grid{ grid-template-columns:1fr; } }
+</style>

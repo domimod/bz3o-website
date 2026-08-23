@@ -1,0 +1,37 @@
+---
+interface Props {
+  compact?: boolean;
+  inverse?: boolean;
+}
+const { compact = false, inverse = false } = Astro.props;
+---
+<a href="/" class:list={['logo-mark', { compact, inverse }]} aria-label="BZ3O – strona główna">
+  <svg viewBox="0 0 52 52" aria-hidden="true">
+    <circle cx="26" cy="26" r="21" class="ring ring--1" />
+    <circle cx="26" cy="26" r="15" class="ring ring--2" />
+    <circle cx="26" cy="26" r="9" class="ring ring--3" />
+  </svg>
+  <span class="logo-copy">
+    <strong>BZ3O</strong>
+    {!compact && <small>Bagua Zhang · Trzech Okręgów</small>}
+  </span>
+</a>
+
+<style>
+  .logo-mark { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; color: var(--color-ink); }
+  .logo-mark:hover { color: var(--color-ink); }
+  svg { width: 42px; height: 42px; flex: 0 0 auto; }
+  .ring { fill: none; stroke-width: 2.7; }
+  .ring--1 { stroke: var(--color-ink); }
+  .ring--2 { stroke: var(--color-gold); }
+  .ring--3 { stroke: var(--color-warm-gray); }
+  .logo-copy { display: grid; line-height: 1.05; }
+  strong { font-family: var(--font-heading); font-size: 1.45rem; letter-spacing: .04em; }
+  small { margin-top: .18rem; color: var(--color-text-muted); font-size: .66rem; white-space: nowrap; }
+  .inverse { color: var(--color-ivory); }
+  .inverse:hover { color: var(--color-ivory); }
+  .inverse .ring--1 { stroke: var(--color-ivory); }
+  .inverse small { color: #cfc8bb; }
+  .compact .logo-copy small { display: none; }
+  @media (max-width: 520px) { .logo-copy small { display: none; } }
+</style>

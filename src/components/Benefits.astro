@@ -1,0 +1,37 @@
+---
+import SectionHeader from './SectionHeader.astro';
+const items = [
+  ['Równowaga i koordynacja','Chodzenie po okręgu, zmiany kierunku i świadome przenoszenie ciężaru rozwijają stabilność oraz kontrolę ruchu.'],
+  ['Mobilność i rozluźnienie','Spiralne i skrętne ruchy angażują biodra, kręgosłup, barki i stawy skokowe, pomagając zachować swobodę ruchu całego ciała.'],
+  ['Silne nogi i stabilny korpus','Praca w pozycjach oraz ciągłe przenoszenie ciężaru wzmacniają nogi i mięśnie odpowiedzialne za stabilizację.'],
+  ['Świadomość ciała','Trening uczy wyczuwania własnego środka ciężkości, napięcia, kierunku działania siły oraz jakości wykonywanego ruchu.'],
+  ['Koncentracja i redukcja napięcia','Koordynacja kroków, ruchu rąk, oddechu i kierunku wymaga skupienia, pomagając jednocześnie oderwać uwagę od codziennego natłoku bodźców.'],
+  ['Praktyczna sztuka walki','Ruchy Bagua mają konkretne zastosowania: zejścia z linii ataku, zmianę pozycji, kontrolę dystansu, przekierowanie siły i kontratak.']
+];
+---
+<section id="korzysci" class="section">
+  <div class="container">
+    <SectionHeader eyebrow="Ruch · równowaga · świadomość" title="Co daje regularny trening Bagua Zhang?" lead="Bagua angażuje całe ciało, łącząc pracę nóg, rotację tułowia, ruch ramion, równowagę i koncentrację." />
+    <div class="benefit-grid">
+      {items.map(([title,text], i) => (
+        <article class="benefit card">
+          <span>{String(i+1).padStart(2,'0')}</span>
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </article>
+      ))}
+    </div>
+    <p class="more"><a class="link-arrow" href="/artykuly/">Poznaj szczegółowe korzyści z treningu →</a></p>
+  </div>
+</section>
+<style>
+  .benefit-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+  .benefit{ padding:1.6rem; transition:transform var(--transition-fast),border-color var(--transition-fast); }
+  .benefit:hover{ transform:translateY(-3px); border-color:#c9aa70; }
+  .benefit>span{ font-family:var(--font-heading); font-size:1.05rem; color:var(--color-gold-dark); }
+  .benefit h3{ margin-top:.8rem; }
+  .benefit p{ margin-top:.7rem; color:var(--color-text-muted); font-size:.92rem; }
+  .more{ margin-top:2rem; }
+  @media(max-width:900px){ .benefit-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:600px){ .benefit-grid{ grid-template-columns:1fr; } }
+</style>
