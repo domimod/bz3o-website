@@ -1,0 +1,58 @@
+---
+interface Props {
+  base: string;
+  alt: string;
+  aspect?: string;
+  widths?: number[];
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+}
+const {
+  base,
+  alt,
+  aspect = '4 / 3',
+  widths = [640, 960, 1440],
+  sizes = '(max-width: 900px) 100vw, 50vw',
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  class: className = ''
+} = Astro.props;
+const avifSrcset = widths.map((w) => `/images/${base}/${base}-${w}.avif ${w}w`).join(', ');
+const webpSrcset = widths.map((w) => `/images/${base}/${base}-${w}.webp ${w}w`).join(', ');
+const fallbackWidth = widths[Math.min(1, widths.length - 1)];
+const [rw, rh] = aspect.split('/').map((v) => Number(v.trim()));
+const fallbackHeight = Math.round(fallbackWidth * rh / rw);
+---
+<picture class:list={['responsive-image', className]} style={`--image-aspect:${aspect};`}>
+  <source type="image/avif" srcset={avifSrcset} sizes={sizes} />
+  <source type="image/webp" srcset={webpSrcset} sizes={sizes} />
+  <img
+    src={`/images/${base}/${base}-${fallbackWidth}.jpg`}
+    alt={alt}
+    width={fallbackWidth}
+    height={fallbackHeight}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding="async"
+  />
+</picture>
+
+<style>
+  .responsive-image {
+    display:block;
+    width:100%;
+    aspect-ratio:var(--image-aspect);
+    overflow:hidden;
+    border-radius:var(--radius-lg);
+    background:var(--color-surface-soft);
+    box-shadow:var(--shadow-soft);
+  }
+  .responsive-image img {
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+</style>

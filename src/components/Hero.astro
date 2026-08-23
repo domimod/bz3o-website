@@ -1,5 +1,5 @@
 ---
-import MediaPlaceholder from './MediaPlaceholder.astro';
+import ResponsiveImage from './ResponsiveImage.astro';
 import { siteConfig } from '../config/site';
 ---
 <section class="hero" aria-labelledby="hero-title">
@@ -20,7 +20,7 @@ import { siteConfig } from '../config/site';
       <p class="class-note"><strong>Kraków</strong> · środy 19:30–21:00 · <span>pierwszy trening bezpłatny</span></p>
     </div>
     <div class="hero-media">
-      <MediaPlaceholder label="Zdjęcie główne" detail="Grupa ćwicząca chodzenie po okręgu / Tang Ni Bu" aspect="4 / 5" />
+      <ResponsiveImage base="hero-training" alt="Trening Bagua Zhang – ćwiczący podczas wspólnej praktyki" aspect="4 / 3" widths={[640,960,1440]} sizes="(max-width: 900px) 100vw, 44vw" loading="eager" fetchpriority="high" />
     </div>
   </div>
 </section>

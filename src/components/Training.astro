@@ -1,6 +1,6 @@
 ---
 import SectionHeader from './SectionHeader.astro';
-import MediaPlaceholder from './MediaPlaceholder.astro';
+import ResponsiveImage from './ResponsiveImage.astro';
 const steps = [
   ['01','Przygotowanie ciała','Rozgrzewka, mobilność oraz rozciąganie dynamiczne i statyczne.'],
   ['02','Ji Ben Gong','Ćwiczenia podstawowe rozwijające rozluźnienie, sprężystość, mobilność i koordynację całego ciała.'],
@@ -18,8 +18,8 @@ const steps = [
         {steps.map(([n,title,text]) => <li><span>{n}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}
       </ol>
       <div class="training-media">
-        <MediaPlaceholder label="Tang Ni Bu" detail="Chodzenie po okręgu" aspect="4 / 3" />
-        <MediaPlaceholder label="Ćwiczenia w parach" detail="Zastosowania i wyczucie kierunku siły" aspect="4 / 3" />
+        <ResponsiveImage base="training-kou-bu" alt="Ćwiczenie pozycji i pracy nóg w treningu Bagua Zhang" aspect="4 / 3" widths={[640,960,1440]} sizes="(max-width: 850px) 50vw, 40vw" />
+        <ResponsiveImage base="training-partner" alt="Ćwiczenie Bagua Zhang w parze – praktyczne zastosowanie techniki" aspect="4 / 3" widths={[640,960,1440]} sizes="(max-width: 850px) 50vw, 40vw" />
       </div>
     </div>
     <div class="beginner-callout"><strong>Nie potrzebujesz wcześniejszego doświadczenia w sztukach walki.</strong><span>Zaczynamy od podstaw i rozwijamy umiejętności stopniowo.</span></div>

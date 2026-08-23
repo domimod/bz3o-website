@@ -1,13 +1,13 @@
 ---
 import SectionHeader from './SectionHeader.astro';
-import MediaPlaceholder from './MediaPlaceholder.astro';
+import ResponsiveImage from './ResponsiveImage.astro';
 ---
 <section class="section section--white">
   <div class="container">
     <SectionHeader eyebrow="Nauczyciel i instruktorzy" title="Doświadczenie i ciągłość przekazu" lead="Szkoła rozwija program Bagua Zhang pod kierunkiem Zhang Fengjuna, z naciskiem na solidne podstawy, jakość ruchu i praktyczne rozumienie technik." />
 
     <article class="master-card card">
-      <MediaPlaceholder label="Zhang Fengjun" detail="Portret nauczyciela szkoły" aspect="4 / 5" />
+      <ResponsiveImage base="master-zhang" alt="Zhang Fengjun – nauczyciel szkoły Bagua Zhang Trzech Okręgów" aspect="4 / 5" widths={[480,800,1200]} sizes="(max-width: 720px) 100vw, 32vw" />
       <div class="bio stack">
         <p class="eyebrow">Sifu szkoły</p><h3>Zhang Fengjun</h3>
         <p>Zhang Fengjun ukończył Beijing Sport University oraz przez wiele lat zdobywał doświadczenie w Chińskiej Akademii Nauk Medycznych. W Polsce mieszka od 1991 roku.</p>
@@ -18,13 +18,13 @@ import MediaPlaceholder from './MediaPlaceholder.astro';
 
     <div class="instructor-grid">
       <article class="instructor card">
-        <MediaPlaceholder label="Renata Miodunka" detail="Pozycja Bagua / portret treningowy" aspect="4 / 5" />
+        <ResponsiveImage base="instructor-renata" alt="Renata Miodunka podczas treningu Bagua Zhang" aspect="4 / 5" widths={[480,800,1200]} sizes="(max-width: 950px) 100vw, 28vw" />
         <div class="bio stack"><p class="eyebrow">Instruktorka</p><h3>Renata Miodunka</h3><p>Bliska uczennica Zhang Fengjuna. Trenowała zarówno style zewnętrzne, jak i wewnętrzne, specjalizując się w Baguazhang. Instruktorka rekreacji ruchowej ze specjalnością Kung Fu – Wushu.</p>
           <div class="achievements"><strong>Wybrane osiągnięcia</strong><ul><li>I miejsce – Mistrzostwa Polski, Inne Style Wewnętrzne, 2000</li><li>II miejsce – Beijing International Wushu and Taijiquan Invitational Tournament, Pekin 1999</li><li>II miejsce – Moravsky Pohar, Softstyle Women, Havirov 2000</li></ul></div>
         </div>
       </article>
       <article class="instructor card">
-        <MediaPlaceholder label="Dominik Miodunka" detail="Chodzenie po okręgu / pozycja Bagua" aspect="4 / 5" />
+        <ResponsiveImage base="instructor-dominik" alt="Dominik Miodunka podczas treningu Bagua Zhang" aspect="4 / 5" widths={[480,800,1200]} sizes="(max-width: 950px) 100vw, 28vw" />
         <div class="bio stack"><p class="eyebrow">Instruktor</p><h3>Dominik Miodunka</h3><p>Trening Kung Fu rozpoczął w 1986 roku od stylu Choy Lee Fut. W latach 90. rozpoczął naukę stylów wewnętrznych Tai Chi Yang i Chen, a następnie Baguazhang oraz Xing Yi.</p><p>Bliski uczeń Zhang Fengjuna i instruktor rekreacji ruchowej ze specjalnością Kung Fu – Wushu.</p></div>
       </article>
     </div>

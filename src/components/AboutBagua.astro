@@ -1,6 +1,6 @@
 ---
 import SectionHeader from './SectionHeader.astro';
-import MediaPlaceholder from './MediaPlaceholder.astro';
+import ResponsiveImage from './ResponsiveImage.astro';
 ---
 <section id="bagua" class="section section--white">
   <div class="container about-grid">
@@ -16,7 +16,7 @@ import MediaPlaceholder from './MediaPlaceholder.astro';
         <span>Ciało pozostaje giętkie i zaokrąglone, a kolejne zmiany płynnie przechodzą jedna w drugą.</span>
       </blockquote>
     </div>
-    <MediaPlaceholder label="Chodzenie po okręgu" detail="Kadr pokazujący ustawienie całego ciała" aspect="4 / 5" />
+    <ResponsiveImage base="about-bagua" alt="Pozycja Bagua Zhang podczas ćwiczenia pracy ciała i kroków" aspect="4 / 5" widths={[480,800,1200]} sizes="(max-width: 850px) 100vw, 38vw" />
   </div>
 </section>
 
