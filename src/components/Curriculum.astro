@@ -1,9 +1,9 @@
 ---
 import SectionHeader from './SectionHeader.astro';
 const levels = [
-  { level:'Poziom 1', name:'Fundamenty', accent:true, items:['Ji Ben Gong','Podstawowe pozycje','Tan Tui','Tang Ni Bu','Kou Bu – krok zamykający','Bai Bu – krok otwierający','8 Mother Palms'] },
-  { level:'Poziom 2', name:'Zmiany i zastosowania', items:['Single Palm Change','Double Palm Change','Ćwiczenia w parach','Zastosowania technik'] },
-  { level:'Poziom 3', name:'Pełny system', items:['Forma ręczna – 24 pozycje / 64 dłonie','Układy podwójne','Zi Wu Yang Yue – „kacze noże”','Szabla','Miecz','Kij','Włócznia'] }
+  { level:'Poziom 1', name:'Fundamenty', accent:true, items:['Ji Ben Gong','Podstawowe pozycje','Tan Tui – sprężyste nogi','Tang Ni Bu - "brodzenie w błocie"','Kou Bu – krok zamykający','Bai Bu – krok otwierający','8 Statycznych Dłoni'] },
+  { level:'Poziom 2', name:'Zmiany i zastosowania', items:['Pojedyncza zmiana dłoni','Podwójna zmiana dłoni','Ćwiczenia w parach','Zastosowania technik'] },
+  { level:'Poziom 3', name:'Pełny system', items:['Forma ręczna – 24 pozycje / 64 dłonie','Układy podwójne','Zi Wu Yang Yue – „kacze noże”','Szabla','Miecz','Kij','Włócznia','Wachlarz'] }
 ];
 ---
 <section id="program" class="section section--soft">
@@ -15,7 +15,7 @@ const levels = [
     <div class="mobile-levels">
       {levels.map((level,i) => <details open={i===0}><summary><span>{level.level}</span><strong>{level.name}</strong></summary><ul>{level.items.map(item=><li>{item}</li>)}</ul></details>)}
     </div>
-    <p class="curriculum-note"><strong>Kou Bu i Bai Bu</strong> stanowią podstawowy mechanizm zmiany kierunku w Baguazhang i umożliwiają płynne przechodzenie pomiędzy kolejnymi ustawieniami ciała.</p>
+    <!-- <p class="curriculum-note"><strong>Kou Bu i Bai Bu</strong> stanowią podstawowy mechanizm zmiany kierunku w Baguazhang i umożliwiają płynne przechodzenie pomiędzy kolejnymi ustawieniami ciała.</p> -->
   </div>
 </section>
 <style>
