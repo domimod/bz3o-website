@@ -34,13 +34,13 @@ export const siteConfig = {
 } as const;
 
 export const navigation = [
-  { label: 'Bagua', href: '#bagua' },
-  { label: 'Trzy Okręgi', href: '#trzy-okregi' },
-  { label: 'Korzyści', href: '#korzysci' },
-  { label: 'Trening', href: '#trening' },
-  { label: 'Program', href: '#program' },
-  { label: 'Szkoła', href: '#szkola' },
-  { label: 'Zajęcia', href: '#zajecia' },
-  { label: 'Artykuły', href: '#artykuly' },
-  { label: 'Kontakt', href: '#kontakt' }
+  { label: 'Bagua', href: '/#bagua' },
+  { label: 'Trzy Okręgi', href: '/#trzy-okregi' },
+  { label: 'Korzyści', href: '/#korzysci' },
+  { label: 'Trening', href: '/#trening' },
+  { label: 'Program', href: '/#program' },
+  { label: 'Szkoła', href: '/#szkola' },
+  { label: 'Zajęcia', href: '/#zajecia' },
+  { label: 'Artykuły', href: '/#artykuly' },
+  { label: 'Kontakt', href: '/#kontakt' }
 ] as const;

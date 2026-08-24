@@ -13,7 +13,7 @@ import { navigation } from '../config/site';
       ))}
     </nav>
 
-    <a class="button button--primary header-cta" href="#kontakt">
+    <a class="button button--primary header-cta" href="/#kontakt">
       Pierwszy trening
     </a>
 
@@ -39,7 +39,7 @@ import { navigation } from '../config/site';
 
       <a
         class="button button--primary mobile-cta"
-        href="#kontakt"
+        href="/#kontakt"
         data-mobile-link
       >
         Pierwszy trening
@@ -131,9 +131,12 @@ import { navigation } from '../config/site';
         if (!visible) return;
 
         navLinks.forEach((link) => {
+          const href = link.getAttribute('href');
+          const hash = href ? new URL(href, window.location.origin).hash : '';
+
           link.classList.toggle(
             'active',
-            link.getAttribute('href') === `#${visible.target.id}`
+            hash === `#${visible.target.id}`
           );
         });
       },
