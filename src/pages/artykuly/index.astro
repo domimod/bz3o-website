@@ -7,7 +7,8 @@ const posts = (await getCollection('articles', ({data}) => data.language==='pl' 
   <section class="section">
     <div class="container">
       <p class="eyebrow">Wiedza BZ3O</p><h1 class="page-title">Artykuły o Bagua Zhang</h1><p class="lead intro">Historia, metody treningowe, sposób ruchu i praktyczne spojrzenie na wewnętrzne style chińskich sztuk walki.</p>
-      {posts.length ? <div class="posts">{posts.map(post=><article class="card"><p class="eyebrow">{post.data.tags[0]??'Bagua Zhang'}</p><h2>{post.data.title}</h2><p>{post.data.description}</p><a class="link-arrow" href={`/artykuly/${post.id}/`}>Czytaj →</a></article>)}</div> : <div class="empty card"><h2>Artykuły są w przygotowaniu</h2><p>Pierwsze materiały zostaną opublikowane wraz z kolejnymi iteracjami strony. Pliki Markdown w katalogu <code>src/content/articles</code> są już gotowe jako szkielety.</p><a class="button button--secondary" href="/">Wróć na stronę główną</a></div>}
+      {posts.length ? <div class="posts">{posts.map(post=><article class="card"><p class="eyebrow">{post.data.tags[0]??'Bagua Zhang'}</p><h2>{post.data.title}</h2><p>{post.data.description}</p><a class="link-arrow" href={`/artykuly/${post.id}/`}>Czytaj →</a></article>)}</div> : <div class="empty card"><h2>Artykuły są w przygotowaniu</h2><p>Pierwsze materiały zostaną opublikowane wkrótce.</p><a class="button button--secondary" href="/">Wróć na stronę główną</a></div>}
+      <!-- Pliki Markdown w katalogu <code>src/content/articles</code> są już gotowe jako szkielety. -->
     </div>
   </section>
 </BaseLayout>
