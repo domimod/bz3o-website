@@ -3,7 +3,7 @@
   "short_name": "BZ3O",
   "description": "Szkoła Bagua Zhang w Krakowie.",
   "start_url": "/",
-  "display": "standalone",
+  "display": "browser",
   "background_color": "#F9F8F6",
   "theme_color": "#F9F8F6",
   "icons": [

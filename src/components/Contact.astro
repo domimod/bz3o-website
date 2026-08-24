@@ -14,11 +14,11 @@ const tel = siteConfig.phone ? `tel:${siteConfig.phone.replace(/\s/g,'')}` : '';
         <a class="button contact-secondary" href={`mailto:${siteConfig.email}`}>Napisz e-mail</a>
         {tel && <a class="button contact-secondary" href={tel}>Zadzwoń</a>}
       </div>
-      {!whatsapp && <p class="pending">WhatsApp Business zostanie dodany po uruchomieniu numeru szkoły.</p>}
+      {!whatsapp && <p class="pending">WhatsApp zostanie dodany po uruchomieniu numeru szkoły.</p>}
     </div>
     <div class="first-visit">
       <h3>Na pierwszy trening zabierz</h3>
-      <ul><li>luźny strój sportowy, np. dres,</li><li>wygodne obuwie na niskiej podeszwie,</li><li>wodę.</li></ul>
+      <ul><li>luźny strój sportowy, np. dres,</li><li>wygodne obuwie na płaskiej podeszwie,</li><li>wodę.</li></ul>
       <div class="contact-data"><span>E-mail</span><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a><span>Zajęcia</span><strong>Środy · 19:30–21:00 · Kraków</strong></div>
     </div>
   </div>
