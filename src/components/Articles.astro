@@ -15,29 +15,44 @@ const published = (
     (a, b) =>
       b.data.date.valueOf() -
       a.data.date.valueOf()
-  )
-  .slice(0, 3);
+  );
 
 const planned = [
-  [
-    'Historia Bagua Zhang',
-    'Krótki przewodnik po początkach Bagua Zhang i najważniejszych liniach przekazu.',
-    'article-history',
-    'Trening Bagua w otoczeniu tradycyjnej chińskiej architektury'
-  ],
-  [
-    'Bagua Zhang a Tai Chi – czym się różnią?',
-    'Porównanie sposobu poruszania się, pracy ciała i charakteru treningu.',
-    'article-bagua-vs-taichi',
-    'Pozycja z treningu wewnętrznych stylów chińskich sztuk walki'
-  ],
-  [
-    'Korzyści z treningu Bagua Zhang',
-    'Jak poszczególne elementy treningu przekładają się na mobilność, równowagę i koordynację.',
-    'article-benefits',
-    'Ćwiczenie mobilności i pozycji w Bagua Zhang'
-  ]
+  {
+    id: 'historia-bagua-zhang',
+    title: 'Historia Bagua Zhang',
+    description: 'Krótki przewodnik po początkach Bagua Zhang i najważniejszych liniach przekazu.',
+    image: 'article-history',
+    alt: 'Trening Bagua w otoczeniu tradycyjnej chińskiej architektury'
+  },
+  {
+    id: 'bagua-a-tai-chi',
+    title: 'Bagua Zhang a Tai Chi – czym się różnią?',
+    description: 'Porównanie sposobu poruszania się, pracy ciała i charakteru treningu.',
+    image: 'article-bagua-vs-taichi',
+    alt: 'Pozycja z treningu wewnętrznych stylów chińskich sztuk walki'
+  },
+  {
+    id: 'korzysci-z-treningu-bagua-zhang',
+    title: 'Korzyści z treningu Bagua Zhang',
+    description: 'Jak poszczególne elementy treningu przekładają się na mobilność, równowagę i koordynację.',
+    image: 'article-benefits',
+    alt: 'Ćwiczenie mobilności i pozycji w Bagua Zhang'
+  }
 ];
+
+const publishedIds = new Set(published.map((post) => post.id));
+const cards = [
+  ...planned.map((plan) => ({
+    plan,
+    post: published.find((entry) => entry.id === plan.id)
+  })),
+  ...published
+    .filter((post) => !planned.some((plan) => plan.id === post.id))
+    .map((post) => ({ plan: undefined, post }))
+]
+  .filter(({ plan, post }) => Boolean(post) || (plan && !publishedIds.has(plan.id)))
+  .slice(0, 3);
 ---
 
 <section id="artykuly" class="section section--white">
@@ -51,58 +66,56 @@ const planned = [
 
     <div class="article-grid">
       {
-        published.length > 0
-          ? published.map((post) => (
+        cards.map(({ plan, post }) => (
               <article class="article-card card">
 
-                <div class="article-image article-image--placeholder">
-                  <span>ARTYKUŁ</span>
-                </div>
+                {
+                  post?.data.image ? (
+                    <div class="article-image">
+                      <img
+                        src={post.data.image}
+                        alt={plan?.alt ?? post.data.title}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  ) : plan ? (
+                    <div class="article-image">
+                      <ResponsiveImage
+                        base={plan.image}
+                        alt={plan.alt}
+                        aspect="16 / 9"
+                        widths={[640, 960, 1440]}
+                        sizes="(max-width: 550px) 100vw, (max-width: 850px) 210px, 33vw"
+                      />
+                    </div>
+                  ) : (
+                    <div class="article-image article-image--placeholder">
+                      <span>ARTYKUŁ</span>
+                    </div>
+                  )
+                }
 
                 <div class="article-copy">
                   <p class="eyebrow">
-                    {post.data.tags[0] ?? 'Bagua Zhang'}
+                    {post ? post.data.tags[0] ?? 'Bagua Zhang' : 'Planowany artykuł'}
                   </p>
 
-                  <h3>{post.data.title}</h3>
+                  <h3>{post?.data.title ?? plan?.title}</h3>
 
-                  <p>{post.data.description}</p>
+                  <p>{post?.data.description ?? plan?.description}</p>
 
-                  <a
-                    class="link-arrow"
-                    href={`/artykuly/${post.id}/`}
-                  >
-                    Czytaj →
-                  </a>
-                </div>
-
-              </article>
-            ))
-          : planned.map(([title, description, image, alt]) => (
-              <article class="article-card card">
-
-                <div class="article-image">
-                  <ResponsiveImage
-                    base={image}
-                    alt={alt}
-                    aspect="16 / 9"
-                    widths={[640, 960, 1440]}
-                    sizes="(max-width: 550px) 100vw, (max-width: 850px) 210px, 33vw"
-                  />
-                </div>
-
-                <div class="article-copy">
-                  <p class="eyebrow">
-                    Planowany artykuł
-                  </p>
-
-                  <h3>{title}</h3>
-
-                  <p>{description}</p>
-
-                  <span class="coming">
-                    Artykuł zostanie opublikowany wkrótce.
-                  </span>
+                  {
+                    post ? (
+                      <a class="link-arrow" href={`/artykuly/${post.id}/`}>
+                        Czytaj →
+                      </a>
+                    ) : (
+                      <span class="coming">
+                        Artykuł zostanie opublikowany wkrótce.
+                      </span>
+                    )
+                  }
                 </div>
 
               </article>

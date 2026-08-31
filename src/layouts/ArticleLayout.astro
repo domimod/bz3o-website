@@ -16,9 +16,23 @@ const articleSchema = {
       <p class="lead">{description}</p>
       <p class="meta">{new Intl.DateTimeFormat('pl-PL',{dateStyle:'long'}).format(date)} · {author}</p>
     </header>
+    {
+      image && (
+        <figure class="article-cover narrow">
+          <img
+            src={image}
+            alt={`Ilustracja do artykułu: ${title}`}
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
+      )
+    }    
     <div class="article-body narrow"><slot /></div>
   </article>
 </BaseLayout>
 <style>
   .article-header{display:grid;gap:1rem}.article-header h1{font-size:clamp(2.7rem,7vw,4.5rem)}.meta{font-size:.82rem;color:var(--color-text-muted)}.article-body{margin-top:3rem}.article-body :global(h2){font-size:2rem;margin:2.6rem 0 1rem}.article-body :global(h3){margin:2rem 0 .7rem}.article-body :global(p){margin:1rem 0;color:#3f3b38}.article-body :global(ul),.article-body :global(ol){padding-left:1.35rem;margin:1rem 0}.article-body :global(blockquote){margin:2rem 0;padding:1rem 1.3rem;border-left:3px solid var(--color-gold);background:var(--color-surface-soft)}
+  .article-cover {margin: 2.5rem auto 0;overflow: hidden;border-radius: var(--radius-lg);background: var(--color-surface-soft);box-shadow: var(--shadow-soft);}
+  .article-cover img {display: block;width: 100%;height: auto;}
 </style>
