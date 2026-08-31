@@ -4,8 +4,8 @@ export const siteConfig = {
   internationalName: 'San Yuan Baguazhang · 三圓八卦掌',
   url: 'https://baguatrzechokregow.pl',
   email: 'bz3o@proton.me',
-  phone: '+48 507 048 563',
-  phoneHref: 'tel:+48507048563',
+  phone: '+48 515 81 81 86',
+  phoneHref: 'tel:+48515818186',
   whatsappNumber: '',
   social: {
     facebook: '',
