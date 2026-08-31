@@ -10,8 +10,6 @@ featured: false
 image: "/images/article-history/article-history-1440.webp"
 ---
 
-# Historia Baguazhang — od Dong Haichuana do Sun Zhijuna
-
 Baguazhang (八卦掌, „Dłoń Ośmiu Trygramów”) należy do najbardziej charakterystycznych chińskich sztuk walki. Jego znakiem rozpoznawczym jest chodzenie po okręgu, połączone ze zmianami kierunku, skrętami całego ciała i ciągłym dostosowywaniem pozycji względem przeciwnika. W odróżnieniu od systemów opartych przede wszystkim na ustalonych sekwencjach, Baguazhang uczynił samą zmianę podstawową zasadą strategii.
 
 Współczesna postać systemu ukształtowała się w Pekinie w drugiej połowie XIX wieku. Za jej twórcę albo pierwszego publicznego nauczyciela uważa się Dong Haichuana. Spośród licznych linii wywodzących się od jego uczniów największe znaczenie zdobyły szkoły Yin Fu, Cheng Tinghua i Liang Zhenpu. Szczególnie rozbudowana okazała się linia Cheng, z której pochodzą między innymi systemy Sun Lutanga i Gao Yishenga, a także rodzinny przekaz zachowany w XX wieku przez Sun Zhijuna.
