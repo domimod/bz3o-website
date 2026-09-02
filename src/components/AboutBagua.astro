@@ -11,6 +11,31 @@ import ResponsiveImage from './ResponsiveImage.astro';
         <p>Bagua rozwija umiejętność ciągłego poruszania się, zmiany pozycji i wykorzystywania ruchu całego ciała. Regularna praktyka pomaga rozwijać równowagę, mobilność, koordynację i koncentrację.</p>
         <p>Jednocześnie Bagua pozostaje pełnoprawną sztuką walki, której ruchy posiadają konkretne zastosowania praktyczne.</p>
       </div>
+      <aside class="pronunciation" aria-labelledby="baguazhang-meaning-title">
+        <h3 id="baguazhang-meaning-title">Co znaczy Baguazhang?</h3>
+        <p class="pronunciation-name">Po chińsku: <strong lang="zh-Hans">八卦掌 — <span lang="zh-Latn">Bāguàzhǎng</span></strong></p>
+        <dl class="pronunciation-terms">
+          <div><dt><span lang="zh-Latn">bā</span> <span lang="zh-Hans">八</span></dt><dd>osiem</dd></div>
+          <div><dt><span lang="zh-Latn">bāguà</span> <span lang="zh-Hans">八卦</span></dt><dd>osiem trygramów</dd></div>
+          <div><dt><span lang="zh-Latn">zhǎng</span> <span lang="zh-Hans">掌</span></dt><dd>dłoń</dd></div>
+        </dl>
+        <p class="pronunciation-meaning"><strong>Baguazhang</strong> można więc przetłumaczyć jako <strong>„Dłoń Ośmiu Trygramów”</strong>.</p>
+
+        <audio id="baguazhang-audio" preload="none" src="/audio/bagua_wymowa.mp3"></audio>
+        <button
+          class="pronunciation-button"
+          type="button"
+          data-pronunciation-button
+          aria-controls="baguazhang-audio"
+          aria-pressed="false"
+        >
+          <svg class="pronunciation-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4Zm12.5 3a4.5 4.5 0 0 0-2-3.74v7.48a4.5 4.5 0 0 0 2-3.74Zm-2-8.65v2.07a7.5 7.5 0 0 1 0 13.16v2.07a9.5 9.5 0 0 0 0-17.3Z" />
+          </svg>
+          <span data-pronunciation-label>Posłuchaj wymowy</span>
+        </button>
+        <span class="sr-only" data-pronunciation-status aria-live="polite"></span>
+      </aside>
       <blockquote>
         <strong>Baguazhang opiera się na nieustannym ruchu, obrocie i przemianie.</strong>
         <span>Ciało pozostaje giętkie i zaokrąglone, a kolejne zmiany płynnie przechodzą jedna w drugą.</span>
@@ -23,8 +48,56 @@ import ResponsiveImage from './ResponsiveImage.astro';
 <style>
   .about-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr); gap:clamp(2.5rem,6vw,6rem); align-items:center; }
   .copy { color:#3f3b38; }
+  .pronunciation { margin-top:2rem; padding:1.25rem 1.4rem; border-left:3px solid var(--color-gold); background:var(--color-surface-soft); color:#3f3b38; }
+  .pronunciation h3 { margin:0; font-size:clamp(1.35rem,2.5vw,1.65rem); }
+  .pronunciation-name { margin-top:.35rem; }
+  .pronunciation-terms { display:grid; gap:.15rem; margin:.8rem 0; }
+  .pronunciation-terms div { display:grid; grid-template-columns:minmax(8rem,auto) 1fr; align-items:baseline; gap:.7rem; }
+  .pronunciation-terms dt { font-weight:700; }
+  .pronunciation-terms dd::before { content:'— '; color:var(--color-gold-dark); }
+  .pronunciation-meaning { margin-top:.65rem; }
+  .pronunciation-button { display:inline-flex; min-height:38px; align-items:center; justify-content:center; gap:.45rem; margin-top:1rem; padding:.45rem .75rem; border:1px solid var(--color-gold); border-radius:999px; background:var(--color-surface); color:var(--color-ink); font-family:var(--font-body); font-size:.82rem; font-weight:700; line-height:1.1; cursor:pointer; transition:background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast); }
+  .pronunciation-button:hover { border-color:var(--color-gold-dark); background:rgba(171,133,65,.09); color:var(--color-ink); }
+  .pronunciation-icon { display:block; width:1rem !important; height:1rem !important; max-width:none; fill:currentColor; flex:0 0 1rem; }
   blockquote { margin-top:2.3rem; padding:1.5rem 1.6rem; border-left:3px solid var(--color-gold); background:var(--color-surface-soft); display:grid; gap:.45rem; }
   blockquote strong { font-family:var(--font-heading); font-size:clamp(1.35rem,2.5vw,1.75rem); }
   blockquote span { color:var(--color-text-muted); }
   @media(max-width:850px){ .about-grid{ grid-template-columns:1fr; } }
+  @media(max-width:480px){
+    .pronunciation { padding:1.1rem 1.15rem; }
+    .pronunciation-terms div { grid-template-columns:1fr; gap:0; }
+    .pronunciation-terms dd { padding-left:.8rem; }
+  }
 </style>
+
+<script>
+  const audio = document.querySelector<HTMLAudioElement>('#baguazhang-audio');
+  const button = document.querySelector<HTMLButtonElement>('[data-pronunciation-button]');
+  const label = button?.querySelector<HTMLElement>('[data-pronunciation-label]');
+  const status = document.querySelector<HTMLElement>('[data-pronunciation-status]');
+
+  const setPlaying = (playing: boolean) => {
+    if (!button || !label) return;
+    button.setAttribute('aria-pressed', String(playing));
+    label.textContent = playing ? 'Zatrzymaj wymowę' : 'Posłuchaj wymowy';
+    if (status) status.textContent = playing ? 'Odtwarzanie wymowy.' : 'Odtwarzanie zatrzymane.';
+  };
+
+  button?.addEventListener('click', async () => {
+    if (!audio) return;
+
+    if (audio.paused) {
+      try {
+        await audio.play();
+      } catch {
+        if (status) status.textContent = 'Nie udało się odtworzyć nagrania.';
+      }
+    } else {
+      audio.pause();
+    }
+  });
+
+  audio?.addEventListener('play', () => setPlaying(true));
+  audio?.addEventListener('pause', () => setPlaying(false));
+  audio?.addEventListener('ended', () => setPlaying(false));
+</script>
