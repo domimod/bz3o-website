@@ -72,15 +72,22 @@ const gaId = siteConfig.gaId;
 
       w.dataLayer = w.dataLayer || [];
 
-      w.gtag = (...args: unknown[]) => {
-        w.dataLayer?.push(args);
+      // Oficjalny format kolejki wymagany przez gtag.js
+      w.gtag = function () {
+        w.dataLayer?.push(arguments);
       };
 
+      // Podstawowy Consent Mode: domyślnie brak zgody
       w.gtag('consent', 'default', {
-        analytics_storage: 'granted',
+        analytics_storage: 'denied',
         ad_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied'
+      });
+
+      // loadGA jest wywoływane wyłącznie po wcześniejszej zgodzie
+      w.gtag('consent', 'update', {
+        analytics_storage: 'granted'
       });
 
       w.gtag('js', new Date());
@@ -98,6 +105,7 @@ const gaId = siteConfig.gaId;
 
       document.head.appendChild(script);
     };
+
 
     if (stored === 'analytics') {
       loadGA();
