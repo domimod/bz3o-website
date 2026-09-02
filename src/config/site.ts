@@ -28,9 +28,10 @@ export const siteConfig = {
     postalCode: '30-612',
     city: 'Kraków',
     room: '1. piętro',
-    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Wincentego+Witosa+39%2C+Krak%C3%B3w'
+    mapsUrl:
+      'https://www.google.com/maps/search/?api=1&query=Wincentego+Witosa+39%2C+Krak%C3%B3w'
   },
-  gaId: import.meta.env.PUBLIC_GA_ID ?? ''
+  gaId: import.meta.env.PUBLIC_GA_ID ?? 'G-QFFYEN6ZXS'
 } as const;
 
 export const navigation = [

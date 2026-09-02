@@ -1,50 +1,195 @@
 ---
 import { siteConfig } from '../config/site';
+
 const gaId = siteConfig.gaId;
 ---
-{gaId && (
-  <div class="consent" data-consent-banner data-ga-id={gaId} hidden>
-    <div class="consent-copy"><strong>Analityka i prywatność</strong><p>Używamy Google Analytics 4 wyłącznie po Twojej zgodzie, aby zrozumieć, jak działa strona. Możesz korzystać ze strony bez analityki.</p><a href="/polityka-prywatnosci/">Polityka prywatności</a></div>
-    <div class="consent-actions"><button type="button" class="button button--secondary" data-consent="necessary">Tylko niezbędne</button><button type="button" class="button button--primary" data-consent="analytics">Akceptuję</button></div>
-  </div>
-)}
+
+{
+  gaId && (
+    <div
+      class="consent"
+      data-consent-banner
+      data-ga-id={gaId}
+      hidden
+    >
+      <div class="consent-copy">
+        <strong>Analityka i prywatność</strong>
+
+        <p>
+          Używamy Google Analytics 4 wyłącznie po Twojej zgodzie,
+          aby zrozumieć, jak działa strona. Możesz korzystać ze
+          strony bez analityki.
+        </p>
+
+        <a href="/polityka-prywatnosci/">
+          Polityka prywatności
+        </a>
+      </div>
+
+      <div class="consent-actions">
+        <button
+          type="button"
+          class="button button--secondary"
+          data-consent="necessary"
+        >
+          Tylko niezbędne
+        </button>
+
+        <button
+          type="button"
+          class="button button--primary"
+          data-consent="analytics"
+        >
+          Akceptuję
+        </button>
+      </div>
+    </div>
+  )
+}
 
 <script>
-  const banner = document.querySelector('[data-consent-banner]');
+  const banner = document.querySelector(
+    '[data-consent-banner]'
+  );
+
   if (banner instanceof HTMLElement) {
     const gaId = banner.dataset.gaId;
     const key = 'bz3o-consent-v1';
     const stored = localStorage.getItem(key);
 
     const loadGA = () => {
-      if (!gaId || document.querySelector('script[data-bz3o-ga]')) return;
-      const w = window as typeof window & { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void };
+      if (
+        !gaId ||
+        document.querySelector('script[data-bz3o-ga]')
+      ) {
+        return;
+      }
+
+      const w = window as typeof window & {
+        dataLayer?: unknown[];
+        gtag?: (...args: unknown[]) => void;
+      };
+
       w.dataLayer = w.dataLayer || [];
-      w.gtag = (...args: unknown[]) => { w.dataLayer?.push(args); };
+
+      w.gtag = (...args: unknown[]) => {
+        w.dataLayer?.push(args);
+      };
+
+      w.gtag('consent', 'default', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+
       w.gtag('js', new Date());
-      w.gtag('config', gaId, { anonymize_ip: true });
+
+      w.gtag('config', gaId, {
+        anonymize_ip: true
+      });
+
       const script = document.createElement('script');
+
       script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}`;
+      script.src =
+        `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}`;
       script.dataset.bz3oGa = 'true';
+
       document.head.appendChild(script);
     };
 
-    if (stored === 'analytics') loadGA();
-    if (!stored) banner.hidden = false;
+    if (stored === 'analytics') {
+      loadGA();
+    }
 
-    banner.querySelectorAll('[data-consent]').forEach((button) => {
-      button.addEventListener('click', () => {
-        const choice = button.getAttribute('data-consent');
-        if (!choice) return;
-        localStorage.setItem(key, choice);
-        banner.hidden = true;
-        if (choice === 'analytics') loadGA();
+    if (!stored) {
+      banner.hidden = false;
+    }
+
+    banner
+      .querySelectorAll('[data-consent]')
+      .forEach((button) => {
+        button.addEventListener('click', () => {
+          const choice = button.getAttribute('data-consent');
+
+          if (!choice) {
+            return;
+          }
+
+          localStorage.setItem(key, choice);
+          banner.hidden = true;
+
+          if (choice === 'analytics') {
+            loadGA();
+          }
+        });
       });
-    });
   }
 </script>
 
 <style>
-  .consent{position:fixed;z-index:2000;left:1rem;right:1rem;bottom:1rem;max-width:980px;margin-inline:auto;padding:1rem 1.1rem;background:#fff;border:1px solid var(--color-border);border-radius:var(--radius-md);box-shadow:0 16px 50px rgba(30,29,29,.16);display:flex;gap:1rem;align-items:center}.consent[hidden]{display:none}.consent-copy{display:grid;gap:.25rem;flex:1}.consent-copy p{font-size:.78rem;line-height:1.45;color:var(--color-text-muted)}.consent-copy a{font-size:.72rem}.consent-actions{display:flex;gap:.5rem;flex:0 0 auto}.consent-actions .button{font-size:.75rem;min-height:40px}@media(max-width:700px){.consent{display:grid}.consent-actions{display:grid;grid-template-columns:1fr 1fr}.consent-actions .button{width:100%}}
+  .consent {
+    position: fixed;
+    z-index: 2000;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    max-width: 980px;
+    margin-inline: auto;
+    padding: 1rem 1.1rem;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: 0 16px 50px rgba(30, 29, 29, 0.16);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .consent[hidden] {
+    display: none;
+  }
+
+  .consent-copy {
+    display: grid;
+    gap: 0.25rem;
+    flex: 1;
+  }
+
+  .consent-copy p {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: var(--color-text-muted);
+  }
+
+  .consent-copy a {
+    font-size: 0.72rem;
+  }
+
+  .consent-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex: 0 0 auto;
+  }
+
+  .consent-actions .button {
+    font-size: 0.75rem;
+    min-height: 40px;
+  }
+
+  @media (max-width: 700px) {
+    .consent {
+      display: grid;
+    }
+
+    .consent-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .consent-actions .button {
+      width: 100%;
+    }
+  }
 </style>
