@@ -5,7 +5,7 @@ import { siteConfig } from '../config/site';
 <section class="hero" aria-labelledby="hero-title">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <div class="hero-brand"><img src="/logo/logo-symbol.webp" width="88" height="82" alt="Symbol aktualnego logo BZ3O" loading="eager" /><p class="eyebrow">Bagua Zhang · Kraków</p></div>
+      <div class="hero-brand"><img class="hero-logo" src="/logo/logo-symbol.svg" alt="Symbol BZ3O – Szkoła Bagua Zhang" loading="eager" decoding="async" /><p class="eyebrow">Bagua Zhang · Kraków</p></div>
       <h1 id="hero-title">Bagua Zhang<br/><span>Szkoła Trzech Okręgów</span></h1>
       <p class="international">{siteConfig.internationalName}</p>
       <div class="motto">
@@ -29,8 +29,9 @@ import { siteConfig } from '../config/site';
   .hero { padding: clamp(3rem, 7vw, 6.5rem) 0 clamp(4rem, 8vw, 7rem); overflow:hidden; }
   .hero-grid { display:grid; grid-template-columns:minmax(0,1.12fr) minmax(340px,.88fr); gap:clamp(2.5rem,6vw,6rem); align-items:center; }
   .hero-copy { display:grid; gap:1.35rem; }
-  .hero-brand { display:flex; align-items:center; gap:.9rem; }
-  .hero-brand img { width:76px; height:auto; mix-blend-mode:multiply; border-radius:8px; }
+  .hero-brand { display:flex; align-items:center; gap:1rem; flex-wrap: nowrap; }
+  .hero-logo { display: block; width: clamp(64px, 7vw, 88px); height: auto; flex: 0 0 auto; mix-blend-mode:multiply; }
+  .hero-brand .eyebrow { margin: 0; white-space: nowrap; }
   h1 span { color:var(--color-gold-dark); }
   .international { font-family:var(--font-heading); font-size:1.05rem; color:var(--color-text-muted); letter-spacing:.02em; }
   .motto { display:grid; gap:.1rem; padding-left:1rem; border-left:2px solid var(--color-gold); }
