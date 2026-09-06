@@ -1,3 +1,6 @@
+const whatsappMessage =
+  'Dzień dobry, chciałbym dowiedzieć się więcej o zajęciach Bagua Zhang w Krakowie.';
+
 export const siteConfig = {
   name: 'Bagua Zhang – Szkoła Trzech Okręgów',
   shortName: 'BZ3O',
@@ -6,9 +9,10 @@ export const siteConfig = {
   email: 'bz3o@proton.me',
   phone: '+48 515 81 81 86',
   phoneHref: 'tel:+48515818186',
-  whatsappNumber: '',
+  whatsappNumber: '48515818186',
+  whatsappHref: `https://wa.me/48515818186?text=${encodeURIComponent(whatsappMessage)}`,
   social: {
-    facebook: '',
+    facebook: 'https://www.facebook.com/baguatrzechokregow',
     instagram: '',
     youtube: ''
   },
