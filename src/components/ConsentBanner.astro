@@ -136,6 +136,53 @@ const gaId = siteConfig.gaId;
   }
 </script>
 
+<script is:inline>
+  const GA_MEASUREMENT_ID = "G-QFFYEN6ZXS";
+
+  window.bz3oTrackEvent = function (eventName, params = {}) {
+    if (typeof window.gtag !== "function") {
+      return;
+    }
+
+    window.gtag("event", eventName, {
+      ...params,
+      transport_type: "beacon",
+    });
+  };
+
+  document.addEventListener("click", (event) => {
+    const target = event.target.closest("[data-ga-event]");
+
+    if (!target) {
+      return;
+    }
+
+    const eventName = target.dataset.gaEvent;
+
+    if (!eventName) {
+      return;
+    }
+
+    const params = {};
+
+    if (target.dataset.gaLocation) {
+      params.cta_location = target.dataset.gaLocation;
+    }
+
+    if (target.dataset.gaContactMethod) {
+      params.contact_method = target.dataset.gaContactMethod;
+    }
+
+    window.bz3oTrackEvent(eventName, params);
+
+    const secondaryEvent = target.dataset.gaSecondaryEvent;
+
+    if (secondaryEvent) {
+      window.bz3oTrackEvent(secondaryEvent, params);
+    }
+  });
+</script>
+
 <style>
   .consent {
     position: fixed;

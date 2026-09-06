@@ -25,18 +25,38 @@ const tel = siteConfig.phone
               class="button button--gold"
               href={whatsapp}
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
+              data-ga-event="whatsapp_click"
+              data-ga-secondary-event="first_training_contact"
+              data-ga-contact-method="whatsapp"
+              data-ga-location="contact_primary"
             >
               Napisz na WhatsApp
             </a>
           )
         }
-        <a class="button contact-secondary" href={`mailto:${siteConfig.email}`}
-          >Napisz e-mail</a
+
+        <a
+          class="button contact-secondary"
+          href={`mailto:${siteConfig.email}`}
+          data-ga-event="email_click"
+          data-ga-secondary-event="first_training_contact"
+          data-ga-contact-method="email"
+          data-ga-location="contact_primary"
         >
+          Napisz e-mail
+        </a>
+
         {
           tel && (
-            <a class="button contact-secondary" href={tel}>
+            <a
+              class="button contact-secondary"
+              href={tel}
+              data-ga-event="phone_click"
+              data-ga-secondary-event="first_training_contact"
+              data-ga-contact-method="phone"
+              data-ga-location="contact_primary"
+            >
               Zadzwoń
             </a>
           )
@@ -54,7 +74,12 @@ const tel = siteConfig.phone
         <div class="contact-item">
           <span class="contact-label">Telefon / WhatsApp</span>
 
-          <a class="phone-link" href={tel}>
+          <a class="phone-link" href={tel}
+            data-ga-event="phone_click"
+            data-ga-secondary-event="first_training_contact"
+            data-ga-contact-method="phone"
+            data-ga-location="contact"          
+          >
             {siteConfig.phone}
           </a>
 
@@ -63,6 +88,10 @@ const tel = siteConfig.phone
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
+            data-ga-event="whatsapp_click"
+            data-ga-secondary-event="first_training_contact"
+            data-ga-contact-method="whatsapp"
+            data-ga-location="contact"            
           >
             Napisz na WhatsApp →
           </a>
@@ -71,7 +100,12 @@ const tel = siteConfig.phone
         <div class="contact-item">
           <span class="contact-label">E-mail</span>
 
-          <a href={`mailto:${siteConfig.email}`}>
+          <a href={`mailto:${siteConfig.email}`}
+            data-ga-event="email_click"
+            data-ga-secondary-event="first_training_contact"
+            data-ga-contact-method="email"
+            data-ga-location="contact"
+          >
             {siteConfig.email}
           </a>
         </div>
